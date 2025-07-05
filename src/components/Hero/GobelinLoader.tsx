@@ -4,6 +4,8 @@ import { gsap } from "gsap";
 import { ExpoScaleEase } from "gsap/EasePack";
 import styled from "styled-components";
 import GobelinLogo from '../../assets/images/gobelin-logo.tsx'
+import { VideoWrapper, VideoContainer, Video } from "../VideoComp"
+
 
 const LoaderSection = styled.section`
   display: flex;
@@ -51,35 +53,6 @@ const GobelinLogoContainer = styled.div`
 const GobelinLogoResize = styled(GobelinLogo)`
   width: 23.5vh;
   height: 23.5vh;
-`
-
-const VideoWrapper = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  z-index: -1;
-`
-
-const VideoContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  top: 0;
-  left: 0;
-  z-index: 1;
-`
-
-const Video = styled.video`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
 `
 
 gsap.registerPlugin(useGSAP, ExpoScaleEase);
