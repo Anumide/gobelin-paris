@@ -8,7 +8,6 @@ import ChevronDownIcon from "../../assets/icons/ChevronDown.tsx"
 import GobelinHeroBanner from "./GobelinHeroBanner.tsx"
 
 const HeaderSection = styled.header`
-  height: 100%;
   padding: 1rem;
 `
 

@@ -22,8 +22,11 @@ const HeroWrapper = styled.div`
 
 const HeroContent = styled.div`
   width: 100%;
-  padding: 2rem;
+  padding: 1rem;
   color: #fff;
+  @media (min-width: 768px) {
+    padding: 2rem;
+  }
 `
 
 const HeroContentWelcome = styled.p`
@@ -35,10 +38,11 @@ const HeroContentHeading = styled.h1`
   & div {
     font-size: 4rem;
     font-weight: 600;
-    line-height: 0.85;
+    line-height: 0.65;
     margin-block: 0.25rem;
     @media (min-width: 768px) {
       font-size: 4.75rem;
+      line-height: 0.85;
     }
   }
   @media (min-width: 768px) {
@@ -88,7 +92,7 @@ const HeroContentButtons = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-block: 1rem;
+  margin-top: 1rem;
   flex-direction: column;
   @media (min-width: 768px) {
     flex-direction: row;
@@ -99,6 +103,7 @@ const ButtonWhiteBg = styled(Button)`
   background-color: #fff;
   color: #313437;
   width: 100%;
+  border: none;
   @media (min-width: 768px) {
     width: auto;
   }
@@ -124,7 +129,7 @@ const ArtisticText: FC<{text: string, colors: string[]}> = ({text, colors}) => {
 
 gsap.registerPlugin(useGSAP, SplitText);
 
-const GobelinHeroBanner = () => {
+const GobelinHeroBanner: FC = () => {
   const heroHeadingText = useRef<HTMLHeadingElement>(null);
   const heroWelcomeContent = useRef<HTMLParagraphElement>(null);
   const heroContentText = useRef<HTMLParagraphElement>(null);
