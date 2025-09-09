@@ -50,6 +50,10 @@ const BuildingCapParent = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 3em;
+  // @media (max-width: 768px) {
+  //   overflow-x: hidden;
+  //   overflow-y: auto;
+  // }
 `
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
@@ -60,6 +64,7 @@ const About: FC = () => {
   const aboutHeadingRef = useRef<HTMLHeadingElement>(null)
   const aboutBuildingCapParentRef = useRef<HTMLDivElement>(null)
   const aboutBuildingCapRef = useRef<SVGSVGElement>(null)
+  const mm = gsap.matchMedia()
 
   useGSAP(() => {
     const aboutHeadingSplit = SplitText.create(aboutHeadingRef.current, {
@@ -114,27 +119,33 @@ const About: FC = () => {
       autoAlpha: 0,
     })
 
-    const tl = gsap.timeline({scrollTrigger: { trigger: aboutBuildingCapParentRef.current, start: '20px 90%', markers: true }});
+    const tl = gsap.timeline({scrollTrigger: { trigger: aboutBuildingCapParentRef.current, start: '20px 90%' }});
+    mm.add({
+      isMobile: '(max-width: 998px)',
+      isDesktop: '(min-width: 999px)',
+    }, (context) => {
+      const { isDesktop } = context.conditions
       tl.fromTo(aboutBuildingCapRef.current, {
         ease: 'power1',
-        y: 400,
-        scale: 1.4,
+        y: 100,
+        scale: isDesktop ? 1.4 : 1.8,
         autoAlpha: 0,
       }, {
-        scale: 1.13,  
+        scale: isDesktop ? 1.1 : 1.5,
         autoAlpha: 1, 
-        y: 100, 
+        y: isDesktop ? '4vh' : '9vh', 
         duration: 0.9,
         transformOrigin: 'bottom center',
-      }).fromTo(aboutBuildingCapRef.current, { scale: 1.13, y: 100 }, {
-        scale: 1,
-        y: 100,
+      }).fromTo(aboutBuildingCapRef.current, { scale: isDesktop ? 1.14 : 1.6, y: isDesktop ? '5vh' : '13vh' }, {
+        scale: isDesktop ? 1 : 1.3,
+        y: isDesktop ? '2vh' : '3vh',
         duration: 0.9,
         ease: 'power1',
         scrollTrigger: {
           scrub: true
         }
       })
+    })
   })
 
   return (
