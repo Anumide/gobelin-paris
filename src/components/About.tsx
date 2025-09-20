@@ -13,6 +13,7 @@ const AboutSection = styled.section`
   height: 100%;
   padding: 1rem;
   margin: 1em 0;
+  overflow: hidden;
 `
 
 const AboutContainer = styled.div`
@@ -50,10 +51,6 @@ const BuildingCapParent = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 3em;
-  // @media (max-width: 768px) {
-  //   overflow-x: hidden;
-  //   overflow-y: auto;
-  // }
 `
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
@@ -66,16 +63,18 @@ const About: FC = () => {
   const aboutBuildingCapRef = useRef<SVGSVGElement>(null)
   const mm = gsap.matchMedia()
 
+  const scrollTrigger = {
+    trigger: aboutContainerRef.current,
+    start: '15px 90%',
+  }
+
   useGSAP(() => {
     const aboutHeadingSplit = SplitText.create(aboutHeadingRef.current, {
       type: "lines, words, chars",
       mask: 'lines',
     })
     gsap.from(aboutHeadingSplit.lines, {
-      scrollTrigger: {
-        trigger: aboutContainerRef.current,
-        start: '15px 90%',
-      },
+      scrollTrigger,
       autoAlpha: 0,
       y: 100,
       stagger: 0.1,
@@ -83,10 +82,7 @@ const About: FC = () => {
       duration: 0.7,
     })
     gsap.from(aboutHeadingSplit.chars, {
-      scrollTrigger: {
-        trigger: aboutContainerRef.current,
-        start: '15px 90%',
-      },
+      scrollTrigger,
       stagger: 0.1,
       y: 100,
       autoAlpha: 0,
@@ -98,10 +94,7 @@ const About: FC = () => {
       mask: 'lines',
     })
     gsap.from(aboutContentSplit.lines, {
-      scrollTrigger: {
-        trigger: aboutContainerRef.current,
-        start: '15px 90%',
-      },
+      scrollTrigger,
       ease: 'power1',
       duration: 0.7,
       y: 50,
@@ -109,10 +102,7 @@ const About: FC = () => {
       stagger: 0.05
     })
     gsap.from(aboutButtonRef.current, {
-      scrollTrigger: {
-        trigger: aboutContainerRef.current,
-        start: '15px 90%',
-      },
+      scrollTrigger,
       ease: 'power1',
       duration: 0.9,
       y: 100,
@@ -155,9 +145,9 @@ const About: FC = () => {
         <div>
           <AboutText ref={aboutTextContent}>At Gobelins, we pride ourselves on our diverse range of programs, including character animation, 3D animation, & visual effects. Each course is designed to foster creativity & technical skills, allowing students to explore their unique artistic voices while mastering the tools of the trade. Our faculty consists of industry professionals who bring their real-world experience into the classroom, providing invaluable insights & mentorship.</AboutText>
           <ButtonTransparentBg ref={aboutButtonRef}>
-              Read About Us
-              <ChevronRightIcon />
-            </ButtonTransparentBg>
+            Read About Us
+            <ChevronRightIcon />
+          </ButtonTransparentBg>
         </div>
       </AboutContainer>
       <BuildingCapParent ref={aboutBuildingCapParentRef}>

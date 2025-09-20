@@ -1,6 +1,7 @@
 import HeroComp from "./components/HeroComp";
 import About from "./components/About";
 import Achievement from "./components/Achievement";
+import Programmes from "./components/Programmes";
 function App() {
 
   return (
@@ -8,6 +9,7 @@ function App() {
       <HeroComp />
       <About />
       <Achievement />
+      <Programmes />
     </>
   )
 }
